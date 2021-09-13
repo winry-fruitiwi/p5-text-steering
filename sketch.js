@@ -1,7 +1,7 @@
 /*
 version comments
-  program shell: basic setup, draw. css styling
-  load a font, use text
+. program shell: basic setup, draw. css styling
+. load a font, use text
   font.textToPoints » display all points
   vehicle with: pos, vel, acc, r, maxspeed, maxforce, target
   vehicle.show, .update,
@@ -25,15 +25,21 @@ function setup() {
 
   textFont(font);
   textSize(32);
-  fill(0, 0, 100);
-  noStroke();
+  fill(0, 50, 100);
+  stroke(0, 50, 100);
+  strokeWeight(5)
 }
 
 function draw() {
   background(0, 0, 50);
 
-  for(let i=0; i<100; i++) {
-    ellipse(random(mouseX), random(mouseY), random(50), random(50));
+  let points = font.textToPoints("Trainbow", 10, height/2, 80)
+  console.log(points)
+  for (let i = 0; i < points.length; i++) {
+    let pt = points[i]
+    point(pt.x, pt.y)
   }
-  text('[Winry Fruitiwi] Lv.73 DRK', 100, 200);
+
+  textSize(80)
+  // text("Trainbow", 10, height/2);
 }
