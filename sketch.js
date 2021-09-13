@@ -1,3 +1,18 @@
+/*
+version comments
+  program shell: basic setup, draw. css styling
+  load a font, use text
+  font.textToPoints » display all points
+  vehicle with: pos, vel, acc, r, maxspeed, maxforce, target
+  vehicle.show, .update,
+  vehicle.applyforce
+  vehicle.seek, flee » behaviors
+  vehicle.arrive
+  textpoints afraid of mouse
+  play with optional parameters to textToPoints
+*/
+
+
 let font;
 
 function preload() {
