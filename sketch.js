@@ -2,7 +2,7 @@
 version comments
 . program shell: basic setup, draw. css styling
 . load a font, use text
-  font.textToPoints » display all points
+. font.textToPoints » display all points
   vehicle with: pos, vel, acc, r, maxspeed, maxforce, target
   vehicle.show, .update,
   vehicle.applyforce
@@ -13,7 +13,8 @@ version comments
 */
 
 
-let font;
+let font
+let vehicles
 
 function preload() {
   font = loadFont('fonts/Meiryo-01.ttf');
@@ -28,18 +29,23 @@ function setup() {
   fill(0, 50, 100);
   stroke(0, 50, 100);
   strokeWeight(5)
+
+  vehicles = []
+
+  let points = font.textToPoints("Trainbow", 10, height/2, 80)
+
+  for (let i = 0; i < points.length; i++) {
+    let pt = points[i]
+    vehicles.push(new Vehicle(pt.x, pt.y))
+  }
 }
 
 function draw() {
   background(0, 0, 50);
 
-  let points = font.textToPoints("Trainbow", 10, height/2, 80)
-  console.log(points)
-  for (let i = 0; i < points.length; i++) {
-    let pt = points[i]
-    point(pt.x, pt.y)
+  for (let i = 0; i < vehicles.length; i++) {
+    let v = vehicles[i]
+    v.update()
+    v.show()
   }
-
-  textSize(80)
-  // text("Trainbow", 10, height/2);
 }
