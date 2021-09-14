@@ -6,10 +6,10 @@ version comments
 . vehicle with: pos, vel, acc, r, maxspeed, maxforce, target
 . vehicle.show, .update,
 . vehicle.applyForce
-  vehicle.seek, flee » behaviors
-  vehicle.arrive
+. vehicle.seek, flee » behaviors
+. vehicle.arrive
   textpoints afraid of mouse
-  play with optional parameters to textToPoints
+ play with optional parameters to textToPoints
 */
 
 
@@ -32,7 +32,11 @@ function setup() {
 
   vehicles = []
 
-  let points = font.textToPoints("Trainbow", 10, height/2, 80)
+  let points = font.textToPoints("Train", 10, 2*height/3, 200)
+  //     {
+  //       sampleFactor: 0.5,
+  //       simplifyThreshold: 0
+  //     })
 
   for (let i = 0; i < points.length; i++) {
     let pt = points[i]

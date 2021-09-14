@@ -1,5 +1,5 @@
 function Vehicle(x, y) {
-    this.pos = new p5.Vector(x, y)
+    this.pos = new p5.Vector(random(width), random(height))
     this.vel = p5.Vector.random2D()
     this.acc = new p5.Vector(0, 0)
     this.target = new p5.Vector(x, y)
@@ -39,11 +39,36 @@ Vehicle.prototype.seek = function(target) {
 }
 
 
+Vehicle.prototype.arrive = function(target) {
+    // We need a force from us to the target.
+    let desired = p5.Vector.sub(target, this.pos)
+    // Here's the splice in the logic: now we need to check the
+    // distance to see if we need to arrive!
+    if (desired.mag() < 50) {
+        let magnitude = map(desired.mag(),
+                            0, 50, 0, this.maxspeed)
+        desired.setMag(magnitude)
+        // steering_force = desired_velocity - current_velocity
+        desired.sub(this.vel)
+        // keep things to the maximum force
+        desired.limit(this.maxforce)
+    }
+    else {
+        desired.setMag(this.maxspeed)
+        // steering_force = desired_velocity - current_velocity
+        desired.sub(this.vel)
+        // keep things to the maximum force
+        desired.limit(this.maxforce)
+    }
+    return desired
+}
+
+
 Vehicle.prototype.flee = function(target) {
     return this.seek(target).mult(-1)
 }
 
 Vehicle.prototype.behaviors = function() {
-    let seekForce = this.seek(this.target)
+    let seekForce = this.arrive(this.target)
     this.applyForce(seekForce)
 }
