@@ -18,3 +18,9 @@ Vehicle.prototype.show = function() {
     strokeWeight(this.r)
     point(this.pos.x, this.pos.y)
 }
+
+
+Vehicle.prototype.applyForce = function(force) {
+    // F = ma, but m = 1 so F = a
+    this.acc.add(force)
+}
