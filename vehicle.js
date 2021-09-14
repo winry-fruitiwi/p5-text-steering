@@ -65,10 +65,31 @@ Vehicle.prototype.arrive = function(target) {
 
 
 Vehicle.prototype.flee = function(target) {
-    return this.seek(target).mult(-1)
+    // We need a force from us to the target.
+    let desired = p5.Vector.sub(target, this.pos)
+    // Here's the splice in the logic: now we need to check the
+    // distance to see if we need to arrive!
+    if (desired.mag() < 50) {
+        desired.setMag(this.maxspeed)
+        // steering_force = desired_velocity - current_velocity
+        desired.sub(this.vel)
+        // keep things to the maximum force
+        desired.limit(this.maxforce)
+        return desired.mult(-1)
+    }
+
+    else {
+        return new p5.Vector(0, 0)
+    }
+
 }
 
 Vehicle.prototype.behaviors = function() {
     let seekForce = this.arrive(this.target)
     this.applyForce(seekForce)
+    let mousePos = new p5.Vector(mouseX, mouseY)
+
+    let fleeFromMouseForce = this.flee(mousePos).mult(2)
+    this.applyForce(fleeFromMouseForce)
+
 }

@@ -47,7 +47,6 @@ function setup() {
 function draw() {
   background(0, 0, 50);
   let gravity = new p5.Vector(0, 0.1)
-  let mousePos = new p5.Vector(mouseX, mouseY)
 
   for (let i = 0; i < vehicles.length; i++) {
     let v = vehicles[i]
