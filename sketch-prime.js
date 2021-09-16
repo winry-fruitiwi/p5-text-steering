@@ -5,9 +5,9 @@ version comments
 . font.textToPoints » display all points
 . vehicle with: pos, vel, acc, r, maxspeed, maxforce, target
  » commit
- vehicle.show, .update,
- vehicle.applyForce
- vehicle.seek, flee » behaviors
+. vehicle.show, .update,
+. vehicle.applyForce
+. vehicle.seek, flee » behaviors
  » commit
  vehicle.arrive
  textpoints afraid of mouse
@@ -41,8 +41,12 @@ function setup() {
 
 function draw() {
     background(30)
+    let gravity = new p5.Vector(0, 0.1)
     for (let i = 0; i < vehicles.length; i++) {
         let vehicle = vehicles[i]
         vehicle.show()
+        vehicle.update()
+        // vehicle.applyForce(gravity)
+        vehicle.behaviors()
     }
 }
