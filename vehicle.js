@@ -1,4 +1,4 @@
-function Vehicle(x, y) {
+function Vehicle(x, y, color) {
     this.pos = new p5.Vector(random(width), random(height))
     this.vel = p5.Vector.random2D()
     this.acc = new p5.Vector(0, 0)
@@ -6,6 +6,7 @@ function Vehicle(x, y) {
     this.maxspeed = 4
     this.maxforce = 0.3
     this.r = 8
+    this.color = color
 }
 
 Vehicle.prototype.update = function() {
@@ -16,6 +17,7 @@ Vehicle.prototype.update = function() {
 
 Vehicle.prototype.show = function() {
     strokeWeight(this.r)
+    stroke(this.color)
     point(this.pos.x, this.pos.y)
 }
 
