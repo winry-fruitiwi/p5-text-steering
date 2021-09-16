@@ -34,7 +34,7 @@ function setup() {
 
   let points = font.textToPoints("Train", 10, 2*height/3, 200,
       {
-        sampleFactor: 0.3,
+        sampleFactor: 0.2,
         simplifyThreshold: 0
       })
 

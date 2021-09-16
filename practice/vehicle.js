@@ -91,7 +91,7 @@ Vehicle.prototype.behaviors = function() {
     this.applyForce(seekForce)
     let mousePos = new p5.Vector(mouseX, mouseY)
 
-    let fleeFromMouseForce = this.flee(mousePos).mult(2)
+    let fleeFromMouseForce = this.flee(mousePos).mult(3)
     this.applyForce(fleeFromMouseForce)
 
 }
